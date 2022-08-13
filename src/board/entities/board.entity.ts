@@ -1,4 +1,11 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Company } from 'src/companies/entities/companies.entity';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class Board extends BaseEntity {
@@ -16,6 +23,7 @@ export class Board extends BaseEntity {
 
   @Column({ type: 'varchar' })
   description: string;
-}
 
-// - 회사가 올린 다른 채용 공고
+  @ManyToOne((_) => Company, (company) => company.boards, { eager: false })
+  company: Company;
+}
