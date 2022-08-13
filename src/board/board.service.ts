@@ -10,7 +10,27 @@ export class BoardService {
     private boardRepository: BoardRepository,
   ) {}
 
-  async create(createBoardDto: CreateBoardDto) {
+  async createBoard(createBoardDto: CreateBoardDto) {
     return this.boardRepository.createBoard(createBoardDto);
+  }
+
+  async updateBoard(id: number, updateBoardDto: any) {
+    return '';
+  }
+
+  async deleteBoard(id: number) {
+    return '';
+  }
+
+  async getAllBoards() {
+    return '';
+  }
+
+  async getBoardSearch(search: string) {
+    return '';
+  }
+
+  async getBoard(id: number) {
+    return '';
   }
 }
