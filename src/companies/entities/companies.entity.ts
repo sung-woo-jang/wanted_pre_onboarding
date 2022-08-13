@@ -10,9 +10,9 @@ import {
 @Entity()
 export class Company extends BaseEntity {
   @PrimaryGeneratedColumn()
-  id: string;
+  id: number;
 
-  @Column({ type: 'varchar' })
+  @Column()
   name: string;
 
   @Column({ type: 'varchar' })
