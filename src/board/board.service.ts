@@ -39,7 +39,7 @@ export class BoardService {
         'company.nation',
         'company.location',
       ])
-      .getRawMany();
+      .getMany();
   }
 
   async getBoardSearch(search: string) {
@@ -47,6 +47,6 @@ export class BoardService {
   }
 
   async getBoard(id: number) {
-    return '';
+    return this.boardRepository.getBoardById(id);
   }
 }

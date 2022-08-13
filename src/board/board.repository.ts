@@ -45,4 +45,20 @@ export class BoardRepository extends Repository<Board> {
       })
       .getMany();
   }
+
+  async getBoardById(id: number) {
+    return await this.createQueryBuilder('board')
+      .leftJoinAndSelect('board.company', 'company')
+      .where({ id })
+      .select([
+        'board.id',
+        'board.position',
+        'board.reward',
+        'board.skill',
+        'company.name',
+        'company.nation',
+        'company.location',
+      ])
+      .getMany();
+  }
 }
