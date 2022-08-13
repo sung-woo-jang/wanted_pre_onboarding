@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { BoardService } from './board.service';
 import { CreateBoardDto } from './dto/create-board.dto';
+import { UpdateBoardDto } from './dto/update-board.dto';
 
 @Controller('board')
 export class BoardController {
@@ -19,8 +20,8 @@ export class BoardController {
     return this.boardService.createBoard(createBoardDto);
   }
   // TODO 채용공고 수정
-  @Patch()
-  updateBoard(@Param('id') id: number, @Body('status') updateBoardDto: any) {
+  @Patch('/:id')
+  updateBoard(@Param('id') id: number, @Body() updateBoardDto: UpdateBoardDto) {
     return this.boardService.updateBoard(id, updateBoardDto);
   }
 

@@ -7,4 +7,4 @@ export class CreateBoardDto extends PickType(Board, [
   'reward',
   'description',
   'company',
-]) {}
+] as const) {}
