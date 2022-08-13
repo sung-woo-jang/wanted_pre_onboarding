@@ -43,7 +43,7 @@ export class BoardService {
   }
 
   async getBoardSearch(search: string) {
-    return '';
+    return await this.boardRepository.getBoardSearch(search);
   }
 
   async getBoard(id: number) {

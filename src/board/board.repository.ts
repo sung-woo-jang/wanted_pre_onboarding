@@ -15,4 +15,34 @@ export class BoardRepository extends Repository<Board> {
     }).save();
     return board;
   }
+
+  async getBoardSearch(search: string) {
+    return await this.createQueryBuilder('board')
+      .leftJoinAndSelect('board.company', 'company')
+      .select([
+        'board.id',
+        'board.position',
+        'board.reward',
+        'board.skill',
+        'company.name',
+        'company.nation',
+        'company.location',
+      ])
+      .orWhere('board.position Like:position', {
+        position: `%${search}%`,
+      })
+      .orWhere('board.skill Like:skill', {
+        skill: `%${search}%`,
+      })
+      .orWhere('company.name Like:name', {
+        name: `%${search}%`,
+      })
+      .orWhere('company.nation Like:nation', {
+        nation: `%${search}%`,
+      })
+      .orWhere('company.location Like:location', {
+        location: `%${search}%`,
+      })
+      .getMany();
+  }
 }
