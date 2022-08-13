@@ -22,7 +22,8 @@ export class BoardService {
   }
 
   async deleteBoard(id: number) {
-    return '';
+    await this.boardRepository.delete({ id });
+    return { status: true };
   }
 
   async getAllBoards() {
