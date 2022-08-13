@@ -27,7 +27,19 @@ export class BoardService {
   }
 
   async getAllBoards() {
-    return '';
+    return await this.boardRepository
+      .createQueryBuilder('board')
+      .leftJoinAndSelect('board.company', 'company')
+      .select([
+        'board.id',
+        'board.position',
+        'board.reward',
+        'board.skill',
+        'company.name',
+        'company.nation',
+        'company.location',
+      ])
+      .getRawMany();
   }
 
   async getBoardSearch(search: string) {
