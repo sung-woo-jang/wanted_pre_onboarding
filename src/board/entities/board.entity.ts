@@ -10,7 +10,7 @@ import {
 @Entity()
 export class Board extends BaseEntity {
   @PrimaryGeneratedColumn()
-  id: string;
+  id: number;
 
   @Column({ type: 'varchar' })
   position: string;
