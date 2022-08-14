@@ -9,6 +9,6 @@ export class ApplyService {
     @InjectRepository(ApplyRepository) private applyRepository: ApplyRepository,
   ) {}
   createApply(createApplyDto: CreateApplyDto) {
-    return '';
+    return this.applyRepository.createApply(createApplyDto);
   }
 }

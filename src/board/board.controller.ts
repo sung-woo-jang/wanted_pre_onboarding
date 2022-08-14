@@ -9,23 +9,13 @@ import {
   Query,
   ParseIntPipe,
 } from '@nestjs/common';
-import { ApplyService } from 'src/apply/apply.service';
-import { CreateApplyDto } from 'src/apply/dto/create-apply.dto';
 import { BoardService } from './board.service';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { UpdateBoardDto } from './dto/update-board.dto';
 
 @Controller('board')
 export class BoardController {
-  constructor(
-    private readonly boardService: BoardService,
-    private applyService: ApplyService,
-  ) {}
-
-  @Post('/apply')
-  createApply(createApplyDto: CreateApplyDto) {
-    return this.applyService.createApply(createApplyDto);
-  }
+  constructor(private readonly boardService: BoardService) {}
 
   @Post()
   createBoard(@Body() createBoardDto: CreateBoardDto) {

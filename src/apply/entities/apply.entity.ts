@@ -1,4 +1,4 @@
-import { IsNumber } from 'class-validator';
+import { IsNotEmpty, IsNumber } from 'class-validator';
 import { Board } from 'src/board/entities/board.entity';
 import { User } from 'src/users/entities/user.entity';
 import { BaseEntity, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
@@ -10,8 +10,10 @@ export class Apply extends BaseEntity {
   id: number;
 
   @ManyToOne(() => User, (user) => user.apply, { eager: false })
+  @IsNotEmpty()
   user: User;
 
   @ManyToOne(() => Board, (Board) => Board.apply, { eager: false })
+  @IsNotEmpty()
   board: Board;
 }
