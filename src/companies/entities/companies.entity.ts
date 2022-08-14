@@ -1,4 +1,5 @@
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty, IsString } from 'class-validator';
 import { Board } from 'src/board/entities/board.entity';
 import {
   BaseEntity,
@@ -10,25 +11,41 @@ import {
 
 @Entity()
 export class Company extends BaseEntity {
+  @ApiProperty({
+    example: '1',
+    description: '회사_id',
+  })
   @PrimaryGeneratedColumn()
-  @IsNumber()
   id: number;
 
+  @ApiProperty({
+    example: '원티드랩',
+    description: '회사명',
+  })
   @Column()
   @IsNotEmpty()
   @IsString()
   name: string;
 
+  @ApiProperty({
+    example: '한국',
+    description: '국가',
+  })
   @Column({ type: 'varchar' })
   @IsNotEmpty()
   @IsString()
   nation: string;
 
+  @ApiProperty({
+    example: '서울',
+    description: '지역',
+  })
   @Column({ type: 'varchar' })
   @IsNotEmpty()
   @IsString()
   location: string;
 
-  @OneToMany((_) => Board, (board) => board.company, { eager: true })
+  @ApiProperty({ type: () => Board, example: 1 })
+  @OneToMany(() => Board, (board) => board.company, { eager: true })
   boards: Board[];
 }
