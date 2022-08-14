@@ -16,7 +16,7 @@ export class BoardService {
   }
 
   async updateBoard(id: number, updateBoardDto: UpdateBoardDto) {
-    await this.boardRepository.update(id, updateBoardDto);
+    await this.boardRepository.update(id, { ...updateBoardDto });
 
     return await this.boardRepository.findOne(id);
   }

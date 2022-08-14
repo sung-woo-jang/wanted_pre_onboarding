@@ -28,7 +28,7 @@ export class User extends BaseEntity {
   @IsString()
   name: string;
 
-  @ApiProperty({ type: () => Apply })
+  @ApiProperty({ type: () => Apply, example: 1 })
   @OneToMany(() => Apply, (apply) => apply.user, { eager: true })
   apply: Apply[];
 }

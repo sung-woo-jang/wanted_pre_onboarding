@@ -45,7 +45,7 @@ export class Company extends BaseEntity {
   @IsString()
   location: string;
 
-  @ApiProperty({ type: () => Board })
+  @ApiProperty({ type: () => Board, example: 1 })
   @OneToMany(() => Board, (board) => board.company, { eager: true })
   boards: Board[];
 }

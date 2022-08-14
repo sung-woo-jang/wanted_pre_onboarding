@@ -1,5 +1,4 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { Apply } from 'src/apply/entities/apply.entity';
 import { Company } from 'src/companies/entities/companies.entity';
 import {
@@ -25,8 +24,6 @@ export class Board extends BaseEntity {
     description: '포지션',
   })
   @Column({ type: 'varchar' })
-  @IsNotEmpty()
-  @IsString()
   position: string;
 
   @ApiProperty({
@@ -34,8 +31,6 @@ export class Board extends BaseEntity {
     description: '사용기술',
   })
   @Column({ type: 'varchar' })
-  @IsNotEmpty()
-  @IsString()
   skill: string;
 
   @ApiProperty({
@@ -43,7 +38,6 @@ export class Board extends BaseEntity {
     description: '채용보상금',
   })
   @Column({ type: 'int' })
-  @IsNumber()
   reward: number;
 
   @ApiProperty({
@@ -51,14 +45,13 @@ export class Board extends BaseEntity {
     description: '채용 내용',
   })
   @Column({ type: 'varchar' })
-  @IsString()
   description: string;
 
-  @ApiProperty({ type: () => Company })
+  @ApiProperty({ type: () => Company, example: 1 })
   @ManyToOne(() => Company, (company) => company.boards, { eager: false })
   company: Company;
 
-  @ApiProperty({ type: () => Apply })
+  @ApiProperty({ type: () => Apply, example: 1 })
   @OneToMany(() => Apply, (apply) => apply.board, { eager: true })
   apply: Apply[];
 }

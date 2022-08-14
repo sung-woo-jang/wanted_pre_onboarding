@@ -13,12 +13,12 @@ export class Apply extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ApiProperty({ type: () => User })
+  @ApiProperty({ type: () => User, example: 1 })
   @ManyToOne(() => User, (user) => user.apply, { eager: false })
   @IsNotEmpty()
   user: User;
 
-  @ApiProperty({ type: () => Board })
+  @ApiProperty({ type: () => Board, example: 1 })
   @ManyToOne(() => Board, (Board) => Board.apply, { eager: false })
   @IsNotEmpty()
   board: Board;
