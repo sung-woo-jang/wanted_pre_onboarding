@@ -4,7 +4,7 @@ import { Board } from './entities/board.entity';
 
 @EntityRepository(Board)
 export class BoardRepository extends Repository<Board> {
-  async createBoard(createBoardDto: CreateBoardDto) {
+  async createBoard(createBoardDto: CreateBoardDto): Promise<Board> {
     const { position, skill, reward, description, company } = createBoardDto;
     const board = await this.create({
       position,
@@ -16,7 +16,7 @@ export class BoardRepository extends Repository<Board> {
     return board;
   }
 
-  async getBoardSearch(search: string) {
+  async getBoardSearch(search: string): Promise<Board[]> {
     return await this.createQueryBuilder('board')
       .leftJoinAndSelect('board.company', 'company')
       .select([
@@ -46,7 +46,7 @@ export class BoardRepository extends Repository<Board> {
       .getMany();
   }
 
-  async getBoardById(id: number) {
+  async getBoardById(id: number): Promise<Board[]> {
     return await this.createQueryBuilder('board')
       .leftJoinAndSelect('board.company', 'company')
       .where({ id })

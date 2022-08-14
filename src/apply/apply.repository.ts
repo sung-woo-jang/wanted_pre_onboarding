@@ -5,7 +5,7 @@ import { Apply } from './entities/apply.entity';
 
 @EntityRepository(Apply)
 export class ApplyRepository extends Repository<Apply> {
-  async createApply(createApplyDto: CreateApplyDto) {
+  async createApply(createApplyDto: CreateApplyDto): Promise<Apply> {
     const { user } = createApplyDto;
     const exitedList = await this.createQueryBuilder('apply')
       .leftJoinAndSelect('apply.user', 'user')
