@@ -1,10 +1,12 @@
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { Apply } from 'src/apply/entities/apply.entity';
 import { Company } from 'src/companies/entities/companies.entity';
 import {
   BaseEntity,
   Column,
   Entity,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -34,4 +36,7 @@ export class Board extends BaseEntity {
 
   @ManyToOne((_) => Company, (company) => company.boards, { eager: false })
   company: Company;
+
+  @OneToMany(() => Apply, (apply) => apply.board, { eager: true })
+  apply: Apply[];
 }

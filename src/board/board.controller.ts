@@ -10,6 +10,7 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 import { ApplyService } from 'src/apply/apply.service';
+import { CreateApplyDto } from 'src/apply/dto/create-apply.dto';
 import { BoardService } from './board.service';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { UpdateBoardDto } from './dto/update-board.dto';
@@ -22,8 +23,8 @@ export class BoardController {
   ) {}
 
   @Post('/apply')
-  createApply() {
-    return '';
+  createApply(createApplyDto: CreateApplyDto) {
+    return this.applyService.createApply(createApplyDto);
   }
 
   @Post()

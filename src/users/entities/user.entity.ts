@@ -1,5 +1,12 @@
 import { IsNotEmpty, IsString } from 'class-validator';
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Apply } from 'src/apply/entities/apply.entity';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class User extends BaseEntity {
@@ -10,4 +17,7 @@ export class User extends BaseEntity {
   @IsNotEmpty()
   @IsString()
   name: string;
+
+  @OneToMany(() => Apply, (apply) => apply.user, { eager: true })
+  apply: Apply[];
 }
