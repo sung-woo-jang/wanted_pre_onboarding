@@ -48,7 +48,11 @@ export class Board extends BaseEntity {
   description: string;
 
   @ApiProperty({ type: () => Company, example: 1 })
-  @ManyToOne(() => Company, (company) => company.boards, { eager: false })
+  @ManyToOne(() => Company, (company) => company.board, {
+    eager: false,
+    nullable: false,
+    onDelete: 'CASCADE',
+  })
   company: Company;
 
   @ApiProperty({ type: () => Apply, example: 1 })

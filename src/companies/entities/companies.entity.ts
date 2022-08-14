@@ -47,5 +47,5 @@ export class Company extends BaseEntity {
 
   @ApiProperty({ type: () => Board, example: 1 })
   @OneToMany(() => Board, (board) => board.company, { eager: true })
-  boards: Board[];
+  board: Board[];
 }

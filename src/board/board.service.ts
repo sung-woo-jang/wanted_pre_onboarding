@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { CompanyRepository } from 'src/companies/companies.repository';
 import { BoardRepository } from './board.repository';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { UpdateBoardDto } from './dto/update-board.dto';
@@ -10,6 +11,8 @@ export class BoardService {
   constructor(
     @InjectRepository(BoardRepository)
     private boardRepository: BoardRepository,
+    @InjectRepository(CompanyRepository)
+    private companyRepository: CompanyRepository,
   ) {}
 
   async createBoard(createBoardDto: CreateBoardDto): Promise<Board> {
@@ -50,7 +53,15 @@ export class BoardService {
     return await this.boardRepository.getBoardSearch(search);
   }
 
-  async getBoard(id: number): Promise<Board[]> {
-    return this.boardRepository.getBoardById(id);
+  async getBoard(id: number) {
+    const board = await this.boardRepository.getBoardById(id);
+    const otherBoards = await this.companyRepository.getOtherBoards(
+      board['company_id'],
+    );
+    const result = {
+      ...board,
+      otherBoards_id: [...otherBoards.filter((e) => e !== id)],
+    };
+    return result;
   }
 }

@@ -46,7 +46,7 @@ export class BoardRepository extends Repository<Board> {
       .getMany();
   }
 
-  async getBoardById(id: number): Promise<Board[]> {
+  async getBoardById(id: number): Promise<Board> {
     return await this.createQueryBuilder('board')
       .leftJoinAndSelect('board.company', 'company')
       .where({ id })
@@ -58,7 +58,8 @@ export class BoardRepository extends Repository<Board> {
         'company.name',
         'company.nation',
         'company.location',
+        'company.id',
       ])
-      .getMany();
+      .getRawOne();
   }
 }

@@ -48,7 +48,7 @@ export class BoardController {
     description: '원하는 채용공고의 자세한 내용을 가져옵니다.',
   })
   @ApiResponse({ status: 201, description: '성공' })
-  getPosting(@Param('id', ParseIntPipe) id: number): Promise<Board[]> {
+  getPosting(@Param('id', ParseIntPipe) id: number) {
     return this.boardService.getBoard(id);
   }
 
