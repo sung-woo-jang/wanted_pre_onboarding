@@ -7,6 +7,7 @@ import {
   Delete,
   Get,
   Query,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { BoardService } from './board.service';
 import { CreateBoardDto } from './dto/create-board.dto';
@@ -21,13 +22,16 @@ export class BoardController {
   }
   // TODO 채용공고 수정
   @Patch('/:id')
-  updateBoard(@Param('id') id: number, @Body() updateBoardDto: UpdateBoardDto) {
+  updateBoard(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateBoardDto: UpdateBoardDto,
+  ) {
     return this.boardService.updateBoard(id, updateBoardDto);
   }
 
   // TODO 채용공고 삭제
   @Delete('/:id')
-  deleteBoard(@Param('id') id: number) {
+  deleteBoard(@Param('id', ParseIntPipe) id: number) {
     return this.boardService.deleteBoard(id);
   }
 
@@ -45,7 +49,7 @@ export class BoardController {
 
   // TODO 채용공고 상세 페이지 가져오기
   @Get('/detail/:id')
-  getPosting(@Param('id') id: number) {
+  getPosting(@Param('id', ParseIntPipe) id: number) {
     return this.boardService.getBoard(id);
   }
 }
