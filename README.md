@@ -78,3 +78,7 @@
 - 명사가 아니라 동사로 작성.
 - description도 자세히 작성.
   기능 완전히 구현한 경우 말고 리팩토링이나 코드 수정을 진행했을 때 어느 부분을 수정했는지 명확하게 명시 해주기.
+
+# npm run start:dev 오류시
+
+npm i --force || npm i --legacy-peer-deps 를 사용하여 실행해주시길 바랍니다.
