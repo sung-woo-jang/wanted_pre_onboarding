@@ -15,6 +15,21 @@
 <div align="center">
 </div>
 
+# 설치
+
+## 1. 웹 서버 설치 및 실행
+
+```bash
+git clone https://github.com/sung-woo-jang/wanted_pre_onboarding.git
+
+cd wanted-pre-onboarding
+
+npm install
+
+npm run start:dev
+# 오류시 npm install --force로 설치 후 실행해주시길 바랍니다.
+```
+
 # 1. 서비스 개요
 
 - 본 서비스는 기업의 채용을 위한 웹 서비스 입니다.
@@ -47,7 +62,7 @@
 
 ## 1. ERD
 
-![스크린샷 2022-08-15 오전 1.08.30.png](https://user-images.githubusercontent.com/54757435/184545978-aae4b6e5-5154-4b46-ba60-fe8684171167.png)
+![스크린샷 2022-08-15 오전 1.08.30.png](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FYuClz%2FbtrKuTWIT6y%2FZllAU7zVBxevpgWh6csfo0%2Fimg.png)
 
 ## 2. Swagger API 문서
 
@@ -78,7 +93,3 @@
 - 명사가 아니라 동사로 작성.
 - description도 자세히 작성.
   기능 완전히 구현한 경우 말고 리팩토링이나 코드 수정을 진행했을 때 어느 부분을 수정했는지 명확하게 명시 해주기.
-
-# npm run start:dev 오류시
-
-npm i --force || npm i --legacy-peer-deps 를 사용하여 실행해주시길 바랍니다.
