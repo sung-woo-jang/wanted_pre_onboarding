@@ -19,7 +19,11 @@ export class Apply extends BaseEntity {
   user: User;
 
   @ApiProperty({ type: () => Board, example: 1 })
-  @ManyToOne(() => Board, (Board) => Board.apply, { eager: false })
+  @ManyToOne(() => Board, (Board) => Board.apply, {
+    eager: false,
+    nullable: false,
+    onDelete: 'CASCADE',
+  })
   @IsNotEmpty()
   board: Board;
 }
